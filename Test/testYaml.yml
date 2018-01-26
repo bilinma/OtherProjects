@@ -1,0 +1,7 @@
+!!com.ucloudlink.bo.Person
+age: 23
+children:
+- {age: 8, children: null, name: mary1, sex: man}
+- {age: 9, children: null, name: simon2, sex: fatel}
+name: simon.zhang
+sex: man
