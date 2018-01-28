@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util-2.5.xsd
+                        ">
+
+	<bean id="orderPropertyConfigurer"
+		class="com.linkage.bss.commons.spring.BssPropertiesConfigure">
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:jsbss.properties</value>
+			</list>
+		</property>
+		<property name="key" value="i am key,let me encrypt you! 1234haha"/>
+	</bean>	
+	<!--OSS接口改造 资源域-->
+	<bean id="oss.ossInterfaceForCRM" class="org.springframework.remoting.jaxrpc.JaxRpcPortProxyFactoryBean" lazy-init="true">  
+      	<property name="serviceFactoryClass" value="org.apache.axis.client.ServiceFactory" />  
+      	<property name="serviceInterface"    value="com.linkage.webservice.vo.IOSSInterfaceForCRM" />  
+      	<property name="wsdlDocumentUrl"     value="${ossInterfaceForCRM.wsdlDocumentUrl}" />
+      	<property name="namespaceUri"        value="${ossInterfaceForCRM.namespaceUri}" />  
+      	<property name="serviceName"         value="${ossInterfaceForCRM.serviceName}" />  
+      	<property name="portName"            value="${ossInterfaceForCRM.portName}" />
+      	<property name="lookupServiceOnStartup" value="false" />
+      	<!-- WebService接口超时配置 -->
+		<property name="portInterface" value="com.linkage.webservice.vo.IOSSInterfaceForCRM"/>
+		<property name="customPropertyMap">
+			<map>
+				<entry key="axis.connection.timeout">
+					<value type="java.lang.Integer">${AppointWS.defaultTimeOut}</value>
+				</entry>
+			</map>
+		</property>
+  	</bean>
+</beans>

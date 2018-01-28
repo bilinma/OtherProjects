@@ -1,0 +1,21 @@
+<msgConditions>
+	<msgCondition>
+		<channelId>100000000</channelId>
+		<businessTypeCd>200000015</businessTypeCd>
+		<businessActionCd>0</businessActionCd>
+		<businessNumber>18914108603</businessNumber>
+		<callNumber />
+		<send>true</send>
+		<msg>
+			<param id="0">2013</param>
+			<param id="1">01</param>
+			<param id="2">22</param>
+			<param id="3">19</param>
+			<param id="4">32</param>
+			<param id="5">取消了天翼大众套餐(新装立即生效,其它次月生效)，并办理了天翼乐享3G-201108上网版189元
+			</param>
+			<param id="6">2013-02-01</param>
+			<param id="7">2013-01-31</param>
+		</msg>
+	</msgCondition>
+</msgConditions>
