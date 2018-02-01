@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+									http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+									http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+									default-autowire="byType">
+	
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"   
+	  	lazy-init="false">   
+	  <property name="locations">   
+	  	<list>   
+	  		<value>classpath:constants.properties</value>   
+	  	</list>   
+	  </property>   
+	</bean> 
+	<!--配置数据库连接信息-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${url}</value>
+		</property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!--	配置sessionFactory	-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<!--			<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/edn/yan/domain/Module.hbm.xml</value>
+				<value>cn/edn/yan/domain/FriendshipConn.hbm.xml</value>
+				<value>cn/edn/yan/domain/Section.hbm.xml</value>
+				<value>cn/edn/yan/domain/File.hbm.xml</value>
+				<value>cn/edn/yan/domain/Information.hbm.xml</value>
+				<value>cn/edn/yan/domain/Affiche.hbm.xml</value>
+				<value>cn/edn/yan/domain/Right.hbm.xml</value>
+				<value>cn/edn/yan/domain/Adminright.hbm.xml</value>
+				<value>cn/edn/yan/domain/Admin.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		<!-- 即执行某个类中执行匹配的这些方法时就会开启一个事务 ，命名很重要-->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<!-- 其它的方法 只读事务，可以提高性能-->
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="pc" expression="execution(* cn.edn.yan.*.*(..))"/>
+		<aop:advisor pointcut-ref="pc" advice-ref="txAdvice" />
+	</aop:config> 
+	
+	<!--导入Spring配置文件-->
+	<import resource="applicationContext_beans.xml"/>
+</beans>
