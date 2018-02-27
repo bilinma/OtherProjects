@@ -45,11 +45,11 @@ public class MongoDbUtil {
             //mongoClient = new MongoClient(new ServerAddress(ServerAddress, PORT), Arrays.asList(credential));
             
             // 2 默认认证机制带参数
-            //mongoClient = new MongoClient(new ServerAddress(ServerAddress, PORT),credentials, options); 
+            mongoClient = new MongoClient(new ServerAddress(ServerAddress, PORT),credentials, options); 
             
             // 3 使用连接字符串而不明确指定认证机制
-            MongoClientURI uri = new MongoClientURI("mongodb://dba:dba@127.0.0.1/?authSource=newdb");
-            mongoClient = new MongoClient(uri);
+            //MongoClientURI uri = new MongoClientURI("mongodb://dba:dba@127.0.0.1/?authSource=newdb");
+            //mongoClient = new MongoClient(uri);
             
             System.out.println("Connect to mongodb successfully："+mongoClient);
             
