@@ -9,7 +9,7 @@ public class TestDate {
 
 	public static void main(String[] args) {
 		
-		Date date = new Date(1480550400000L);
+		Date date = new Date(1523601688059L);
 		System.out.println(date.getTime());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("北京时间："+dateFormat.format(date));
