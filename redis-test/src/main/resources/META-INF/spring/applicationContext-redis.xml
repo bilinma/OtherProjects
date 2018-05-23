@@ -18,9 +18,6 @@
     <!-- scanner redis properties  -->  
     <context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/> 
     
-    <!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->    
-    <cache:annotation-driven cache-manager="cacheManager" />   
-  
     <!--（1）如果你有多个数据源需要通过<context:property-placeholder管理，且不愿意放在一个配置文件里，那么一定要加上ignore-unresolvable=“true"-->  
     <!--（2）注意新版的（具体从哪个版本开始不清楚，有兴趣可以查一下）JedisPoolConfig的property name，不是maxActive而是maxTotal，而且没有maxWait属性，建议看一下Jedis源码。-->  
     <!-- redis连接池 -->  
@@ -51,24 +48,4 @@
         <property name="enableTransactionSupport" value="true"/>  
     </bean> 
     
-    
-     <!-- spring自己的缓存管理器，这里定义了缓存位置名称 ，即注解中的value -->    
-     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">    
-         <property name="caches">    
-            <set>    
-                <!-- 这里可以配置多个redis -->  
-                <bean class="com.ucloudlink.redis.common.RedisCache">    
-                     <property name="redisTemplate" ref="redisTemplate" />    
-                     <property name="name" value="default"/>
-                     <property name="liveTime" value="${redis.liveTime}" />    
-                </bean>   
-                <bean class="com.ucloudlink.redis.common.RedisCache">    
-                     <property name="redisTemplate" ref="redisTemplate" />    
-                     <property name="name" value="common"/>
-                     <property name="liveTime" value="${redis.liveTime}" />    
-                     <!-- common名称要在类或方法的注解中使用 -->  
-                </bean>  
-            </set>    
-         </property>    
-     </bean>     
 </beans>  
