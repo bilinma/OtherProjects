@@ -21,25 +21,19 @@ public class UserServiceImpl implements IUserService {
 	@Cacheable(value = "common", key = "'id_'+#id")
 	public User selectByPrimaryKey(Long id) {
 		System.out.println("======================");
-		System.out.println("======================");
-		System.out.println("======================");
 		return userDao.selectByPrimaryKey(id);
 	}
 
 	@CachePut(value = "common", key = "'id_'+#user.getId()")
 	public User insertSelective(User user) {
 		userDao.insertSelective(user);
-		System.out.println("########################");
-		System.out.println("########################");
-		System.out.println("########################");
+		System.out.println("++++++++++++++++++++++++");
 		return user; 
 	}
 
 	@CacheEvict(value = "common", key = "'id_'+#id")
 	public void deleteByPrimaryKey(Long id) {
 		userDao.deleteByPrimaryKey(id);
-		System.out.println("******************************");
-		System.out.println("******************************");
-		System.out.println("******************************");
+		System.out.println("------------------------");
 	}
 }
