@@ -1,0 +1,18 @@
+${message}  
+${username}  
+  
+${strList?size}  
+  
+<#list strList as student> 
+	<#if student.id == 10>
+	  student:${student.name}; 哈哈  
+	<#elseif student.id == 20>
+	  student:${student.name}; 哈哈  
+	<#elseif student.id == 30>
+	  student:${student.name}; 哈哈  
+	<#elseif student.id == 44>
+	  student:${student.name}; 哈哈  
+	<#else>
+	  x is not 1 nor 2 nor 3 nor 4
+	</#if>  
+</#list>  
