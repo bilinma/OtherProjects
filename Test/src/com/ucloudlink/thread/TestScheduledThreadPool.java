@@ -22,9 +22,11 @@ public class TestScheduledThreadPool {
 		
 		
 		scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
+			int count = 0;
 			@Override
 			public void run() {
-				System.out.println("delay 1 seconds, and excute every 3 seconds");
+				count += 1;
+				System.out.println("delay 1 seconds, and excute every 3 seconds线程："+Thread.currentThread()+"负责了"+count+"次任务");  
 			}
 		}, 1, 3, TimeUnit.SECONDS);
 	}

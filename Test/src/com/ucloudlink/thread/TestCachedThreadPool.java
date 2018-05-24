@@ -15,6 +15,7 @@ public class TestCachedThreadPool {
 		for (int i = 0; i < 10; i++) {
 			final int index = i;
 			try {
+				//下面这行代码注释的话，线程池会新建10个线程，不注释的话，因为会复用老线程，不会产生10个线程 
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -23,7 +24,7 @@ public class TestCachedThreadPool {
 			cachedThreadPool.execute(new Runnable() {
 				@Override
 				public void run() {
-					System.out.println(index);
+					 System.out.println("线程："+Thread.currentThread()+"负责了"+index+"次任务");  
 				}
 			});
 		}

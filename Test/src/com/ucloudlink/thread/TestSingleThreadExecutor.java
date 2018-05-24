@@ -13,13 +13,13 @@ public class TestSingleThreadExecutor {
 	public static void main(String[] args) {
 		ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
 		for (int i = 0; i < 10; i++) {
-		    final int index = i;
+		    final int count = i;
 		    singleThreadExecutor.execute(new Runnable() {
 
 		        @Override
 		        public void run() {
 		            try {
-		                System.out.println(index);
+		            	System.out.println("线程："+Thread.currentThread()+"负责了"+count+"次任务");  
 		                Thread.sleep(2000);
 		            } catch (InterruptedException e) {
 		                // TODO Auto-generated catch block
