@@ -1,4 +1,4 @@
-package com.test.entity;
+package com.swagger.entity;
 
 public class BaseResult {
 	private String Des;

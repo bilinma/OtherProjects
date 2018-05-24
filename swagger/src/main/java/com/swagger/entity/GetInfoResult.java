@@ -1,10 +1,10 @@
-package com.test.entity;
+package com.swagger.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 
 public class GetInfoResult  extends BaseResult{
-	private String text;
 	@ApiModelProperty(value="text here",required = true)
+	private String text;
 	public String getText() {
 		return text;
 	}

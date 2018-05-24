@@ -1,4 +1,4 @@
-package com.test.action;
+package com.swagger.action;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,8 +14,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.test.entity.GetInfoParam;
-import com.test.entity.GetInfoResult;
+import com.swagger.entity.GetInfoParam;
+import com.swagger.entity.GetInfoResult;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
