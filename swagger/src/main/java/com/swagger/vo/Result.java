@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.swagger.doc.vo;
+package com.swagger.vo;
 
 import java.io.Serializable;
 

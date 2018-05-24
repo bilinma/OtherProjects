@@ -29,7 +29,7 @@ public class SwaggerConfig  {
        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                .select()
                .apis(RequestHandlerSelectors.any())
-               .paths(this.pathsCustom())
+               //.paths(this.pathsCustom())
                .build();
        docket.apiInfo(getApiInfo());
        docket.groupName("customer");

@@ -1,4 +1,4 @@
-package com.swagger.doc.po;
+package com.swagger.bo;
 
 /**
  * Created by haoyifen on 16-9-28 2016 下午5:53
