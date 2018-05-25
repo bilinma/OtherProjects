@@ -11,7 +11,6 @@ public class WorkThread implements Runnable{
 
 	public WorkThread (int index){
 		this.index = index;
-		System.out.println("create-"+index);
 	}
 	
 	
