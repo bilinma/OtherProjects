@@ -2,6 +2,7 @@ package com.ucloudlink.test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,5 +62,19 @@ public class TestStr {
 			// out: appid, joy
 			System.out.println(matcher.group(2));
 		}*/
+		
+		
+			int random=(int) Math.round(Math.random()*25+97);
+			char temp=(char) random;
+			System.out.println(temp);
+			
+			
+			char[] A_Z = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'
+					,'S','T','U','V','W','X','Y','Z'};
+					Random rd = new Random();
+					for(int i=0;i<=10;i++)//随即10个拿出来看看
+					{
+					System.out.print(A_Z[rd.nextInt(26)]+" ");
+					}
 	}
 }
