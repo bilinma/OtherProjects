@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ucloudlink.redis.bo.User;
 import com.ucloudlink.redis.service.IUserService;
+import com.ucloudlink.redis.utils.RedisTemplateUtil;
 
 /**
  * Unit test for simple App.
@@ -23,9 +24,15 @@ public class TestSpringRedis {
 
 	@Autowired
 	private RedisTemplate redisTemplate;
+	
+	@Autowired
+	private RedisTemplateUtil  redisTemplateUtil;
 
 	@Test
 	public void testRedis() {
+		
+		redisTemplateUtil.set("name", "马小斌");
+		System.out.println(redisTemplateUtil.get("name"));
 		// stringRedisTemplate的操作
 		// String读写
 		redisTemplate.delete("myStr");
