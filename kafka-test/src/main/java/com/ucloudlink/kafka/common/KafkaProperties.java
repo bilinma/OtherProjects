@@ -3,7 +3,9 @@ package com.ucloudlink.kafka.common;
 public interface KafkaProperties {
 	final static String zkConnect = "127.0.0.1:2181";
 
-	final static String groupId = "group1";
+	final static String groupId1 = "group1";
+	
+	final static String groupId2 = "group2";
 
 	final static String topic = "topic1";
 
