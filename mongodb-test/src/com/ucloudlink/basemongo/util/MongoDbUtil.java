@@ -1,4 +1,4 @@
-package com.ucloudlink.mongodb.util;
+package com.ucloudlink.basemongo.util;
 
 import java.util.ArrayList;
 import java.util.List;

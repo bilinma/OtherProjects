@@ -1,4 +1,4 @@
-package com.ucloudlink.mongodb.test;
+package com.ucloudlink.basemongo.test;
 
 import org.bson.Document;
 
@@ -6,12 +6,11 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
-import com.ucloudlink.mongodb.util.MongoDbUtil;
-
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+import com.ucloudlink.basemongo.util.MongoDbUtil;
 
 public class MongoDbTest {
 
