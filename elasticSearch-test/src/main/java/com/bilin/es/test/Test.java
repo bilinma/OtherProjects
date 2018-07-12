@@ -17,7 +17,7 @@ public class Test {
 		ElasticsearchUtils es = new ElasticsearchUtils();
 		String indexName = "school";// 索引名称
 		String typeName = "student";// 类型名称
-		String id = "1";
+		String id = String.valueOf(System.currentTimeMillis());
 		String jsonData = "{\"name\":\"kimchy\",\"birth\":\"1995-01-30\",\"email\":\"kimchy@163.com\"}";// json数据
 		// 1.创建索引(ID可自定义也可以自动创建，此处使用自定义ID)
 		es.createIndex(indexName, typeName, id, jsonData);
@@ -45,7 +45,7 @@ public class Test {
 		es.updateIndex(indexName, typeName, id, jsonData);
 
 		// 4.删除数据
-		es.deleteIndex(indexName, typeName, id);
+		es.deleteIndex(indexName, typeName, "2");
 
 	}
 }
