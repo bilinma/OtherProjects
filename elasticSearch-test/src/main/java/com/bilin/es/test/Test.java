@@ -18,7 +18,7 @@ public class Test {
 		String indexName = "school";// 索引名称
 		String typeName = "student";// 类型名称
 		String id = String.valueOf(System.currentTimeMillis());
-		String jsonData = "{\"name\":\"kimchy\",\"birth\":\"1995-01-30\",\"email\":\"kimchy@163.com\"}";// json数据
+		String jsonData = "{\"name\":\"jack\",\"birth\":\"1995-01-30\",\"email\":\"kimchy@163.com\"}";// json数据
 		// 1.创建索引(ID可自定义也可以自动创建，此处使用自定义ID)
 		es.createIndex(indexName, typeName, id, jsonData);
 
@@ -42,10 +42,10 @@ public class Test {
 
 		// 3.更新数据
 		jsonData = "{" + "\"name\":\"jack\"," + "\"birth\":\"1996-01-30\"," + "\"email\":\"jack@163.com\"" + "}";// json数据
-		es.updateIndex(indexName, typeName, id, jsonData);
+		//es.updateIndex(indexName, typeName, id, jsonData);
 
 		// 4.删除数据
-		es.deleteIndex(indexName, typeName, "2");
+		//es.deleteIndex(indexName, typeName, "2");
 
 	}
 }
