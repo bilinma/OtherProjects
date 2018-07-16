@@ -1,4 +1,4 @@
-package cn.vicky.channel;
+package com.bilin.nio.demo2;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -10,7 +10,7 @@ import java.net.InetAddress;
  * TCP/IP的NIO非阻塞方式  
  * 客户端  
  * */
-public class Client2 {
+public class Client {
 
     //创建缓冲区   
     private ByteBuffer buffer = ByteBuffer.allocate(512);

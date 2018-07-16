@@ -1,4 +1,4 @@
-package com.ucloudlink.test;
+package com.bilin.nio.shareram;
 
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
