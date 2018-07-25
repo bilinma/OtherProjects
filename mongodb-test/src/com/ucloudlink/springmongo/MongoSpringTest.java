@@ -5,29 +5,35 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import com.ucloudlink.springmongo.model.User;
+import com.ucloudlink.springmongo.service.user.IUserService;
 
 public class MongoSpringTest {
 
 
-	// 使用spring整合的话, 就直接注入就可以了, 这是测试uanjing
+	// 使用spring整合的话, 就直接注入就可以了
     public static void main(String[] args) { 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("mongodb.xml");
+        
+        //Spring 封装处理方式
         MongoTemplate mongoTemplate = (MongoTemplate) context.getBean("mongoTemplate");
         MongoSpringTest mongoSpringTest  =  new MongoSpringTest();
         mongoSpringTest.testAddUser(mongoTemplate);
         mongoSpringTest.testQueryUser(mongoTemplate);
+        
+        //个人结合Spring封装
+        IUserService userService = (IUserService) context.getBean("userServiceImpl");
+        List<User> userList1 =  userService.findByCondition(null);
+        printList(userList1);
+        
     }
 
     /**
@@ -37,7 +43,7 @@ public class MongoSpringTest {
     public void testAddUser(MongoTemplate mongoTemplate) {
         User zhanggc = new User();
         zhanggc.setName("zhangguochen");
-        zhanggc.setAge(29);
+        zhanggc.setAge(23);
         List<String> interests = new ArrayList<String>();
         interests.add("stuty");
         interests.add("hadoop");
@@ -56,21 +62,23 @@ public class MongoSpringTest {
     public void testQueryUser(MongoTemplate mongoTemplate) {
         // 查询主要用到Query和Criteria两个对象
         Query query = new Query();
-        Criteria criteria = where("age").gt(22);    // 大于
+        Criteria criteria = new Criteria();
+        //criteria.where("age").gt(22);    // 大于
 
-        // criteria.and("name").is("cuichongfei");等于
-        // List<String> interests = new ArrayList<String>();
-        // interests.add("study");
-        // interests.add("linux");
-        // criteria.and("interest").in(interests); in查询
-        // criteria.and("home.address").is("henan"); 内嵌文档查询
-        // criteria.and("").exists(false); 列存在
-        // criteria.and("").lte(); 小于等于
-        // criteria.and("").regex(""); 正则表达式
-        // criteria.and("").ne(""); 不等于
-        // 多条件查询
-        // criteria.orOperator(Criteria.where("key1").is("0"),Criteria.where("key1").is(null));
-
+		/* criteria.and("name").is("cuichongfei");//等于
+		 List<String> interests = new ArrayList<String>();
+		 interests.add("study");
+		 interests.add("linux");
+		 criteria.and("interest").in(interests); //in查询
+		 criteria.and("home.address").is("henan"); //内嵌文档查询
+		 criteria.and("").exists(false); //列存在
+		 criteria.and("").lte(""); ///小于等于
+		 criteria.and("").regex(""); //正则表达式
+		 criteria.and("").ne(""); //不等于*/
+		 
+		//多条件查询
+		criteria.orOperator(Criteria.where("age").lt(20),Criteria.where("age").gt(26));
+		criteria.andOperator(Criteria.where("name").is("zhangguochen")); 
         query.addCriteria(criteria);
         List<User> userList1 = mongoTemplate.find(query, User.class);
         printList(userList1);
@@ -126,9 +134,9 @@ public class MongoSpringTest {
         mongoTemplate.remove(query, User.class);
     }
 
-    public void printList(List<User> userList) {
+    public static void printList(List<User> userList) {
         for (User user : userList) {
-            System.out.println(user.getName());
+            System.out.println(user);
         }
     }
     
