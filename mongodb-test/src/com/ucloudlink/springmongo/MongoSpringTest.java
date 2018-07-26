@@ -24,13 +24,18 @@ public class MongoSpringTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("mongodb.xml");
         
         //Spring 封装处理方式
-        MongoTemplate mongoTemplate = (MongoTemplate) context.getBean("mongoTemplate");
+        /*MongoTemplate mongoTemplate = (MongoTemplate) context.getBean("mongoTemplate");
         MongoSpringTest mongoSpringTest  =  new MongoSpringTest();
         mongoSpringTest.testAddUser(mongoTemplate);
-        mongoSpringTest.testQueryUser(mongoTemplate);
+        mongoSpringTest.testQueryUser(mongoTemplate);*/
         
         //个人结合Spring封装
         IUserService userService = (IUserService) context.getBean("userServiceImpl");
+        User zhanggc = new User();
+        zhanggc.setName("李刚");
+        zhanggc.setAge(30);
+        userService.insert(zhanggc);
+        
         List<User> userList1 =  userService.findByCondition(null);
         printList(userList1);
         
