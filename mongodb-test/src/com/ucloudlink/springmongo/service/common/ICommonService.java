@@ -17,13 +17,14 @@ import com.ucloudlink.springmongo.common.dto.PageDataResponse;
  * @param <PK>
  */
 public interface ICommonService<T, PK extends Serializable> {
-	
+
 	/**
 	 * 根据主键删除
+	 * 
 	 * @param paramPK
 	 */
 	public void delete(PK paramPK);
-	
+
 	/**
 	 * 
 	 * @param id
@@ -70,4 +71,12 @@ public interface ICommonService<T, PK extends Serializable> {
 	public void modify(T entity);
 
 	public void modify(T entity, String collectionName);
+
+	public List<T> findByConditionNew(Condition paramCondition);
+
+	public List<T> findByConditionNew(Condition paramCondition, String paramString);
+
+	public PageDataResponse<T> findByPageNew(Condition paramCondition);
+
+	public PageDataResponse<T> findByPageNew(Condition paramCondition, String paramString);
 }

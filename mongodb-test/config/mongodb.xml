@@ -21,7 +21,7 @@
     3.mongoTemplate：与数据库接口交互的主要实现类
     -->
 
-    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.username}:${mongo.password}@${mongo.database}">
+    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.username}:${mongo.password}@${mongo.authenticationdb}">
     	<mongo:client-options 
     		write-concern="SAFE"
             connections-per-host="${mongo.connectionsPerHost}"

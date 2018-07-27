@@ -1,4 +1,4 @@
-package com.ucloudlink.springmongo;
+package com.ucloudlink.springmongo.test;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
@@ -31,10 +31,10 @@ public class MongoSpringTest {
         
         //个人结合Spring封装
         IUserService userService = (IUserService) context.getBean("userServiceImpl");
-        User zhanggc = new User();
+        /*User zhanggc = new User();
         zhanggc.setName("李刚");
         zhanggc.setAge(30);
-        userService.insert(zhanggc);
+        userService.insert(zhanggc);*/
         
         List<User> userList1 =  userService.findByCondition(null);
         printList(userList1);

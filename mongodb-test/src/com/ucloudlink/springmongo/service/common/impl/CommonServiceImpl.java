@@ -52,7 +52,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 	 * @param items
 	 * @return Criteria对象 不为空
 	 */
-	
+
 	public List<Criteria> createCriteriaByQueryItemList(Collection<QueryItem> items) {
 		List<Criteria> listC = new ArrayList<Criteria>();
 		if (CollectionUtils.isEmpty(items)) {
@@ -231,7 +231,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 
 	@Override
 	public List<T> findByCondition(Condition condition, String collectionName) {
-		logger.debug("findByCondition param: condition="+condition+", collectionName="+collectionName);
+		logger.debug("findByCondition param: condition=" + condition + ", collectionName=" + collectionName);
 
 		Query query = createQuery(condition, null);
 
@@ -247,7 +247,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 
 	@Override
 	public List<T> findByCondition(Condition condition, Criteria criteria, String collectionName) {
-		logger.debug("findByCondition param: condition="+condition);
+		logger.debug("findByCondition param: condition=" + condition);
 
 		Query query = createQuery(condition, criteria);
 
@@ -281,7 +281,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 	@Override
 	public PageDataResponse<T> findByPage(Condition condition, String collectionName) {
 		Assert.notNull(condition);
-		logger.debug("findByPage param: condition="+condition+", collectionName=" + collectionName );
+		logger.debug("findByPage param: condition=" + condition + ", collectionName=" + collectionName);
 
 		PageDataResponse<T> respData = new PageDataResponse<T>();
 		respData.setCurrentPage(Integer.valueOf(condition.getCurrentPage()));
@@ -305,7 +305,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 		}
 		respData.setDataList(dataList);
 
-		logger.debug("findByPage result : totalCount="+totalCount+", dataListSize="+dataList.size());
+		logger.debug("findByPage result : totalCount=" + totalCount + ", dataListSize=" + dataList.size());
 		return respData;
 	}
 
@@ -324,7 +324,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 		}
 		return this.mongoTemplate.findOne(Query.query(criteria), this.entityClass, collectionName);
 	}
-	
+
 	@Override
 	public T findOneByCondition(Condition condition) {
 		return findOneByCondition(condition, null);
@@ -368,7 +368,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 			this.mongoTemplate.insert(entities, collectionName);
 		}
 	}
-	
+
 	@Override
 	public void modify(String id, Map<String, Object> dataMap) {
 		Query query = Query.query(Criteria.where("_id").is(id));
@@ -378,7 +378,7 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 		}
 		update.unset("tx");
 		this.mongoTemplate.updateFirst(query, update, this.entityClass);
-		logger.debug("modifiy "+entityClass.getName()+" id="+id+", field="+dataMap);
+		logger.debug("modifiy " + entityClass.getName() + " id=" + id + ", field=" + dataMap);
 	}
 
 	@Override
@@ -397,14 +397,13 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 			update.set(key, dbObject.get(key));
 		}
 		update.unset("tx");
-		logger.info("update:"+id+","+ update);
+		logger.info("update:" + id + "," + update);
 		if (StringUtils.isBlank(collectionName)) {
 			this.mongoTemplate.findAndModify(query, update, this.entityClass);
 		} else {
 			this.mongoTemplate.findAndModify(query, update, this.entityClass, collectionName);
 		}
 	}
-
 
 	public DBObject resloveBean2DBObject(T bean) {
 		return resloveBean2DBObject(bean, true);
@@ -467,4 +466,116 @@ public class CommonServiceImpl<T, PK extends Serializable> implements ICommonSer
 		}
 		return new Sort(orders);
 	}
+
+	public List<T> findByConditionNew(Condition condition) {
+		return findByConditionNew(condition, null);
+	}
+
+	public List<T> findByConditionNew(Condition condition, String collectionName) {
+
+		Query query = createQueryNew(condition, null);
+
+		List<T> dataList = new ArrayList<T>();
+		if (StringUtils.isBlank(collectionName)) {
+			dataList = this.mongoTemplate.find(query, this.entityClass);
+		} else {
+			dataList = this.mongoTemplate.find(query, this.entityClass, collectionName);
+		}
+		return dataList;
+	}
+
+	public PageDataResponse<T> findByPageNew(Condition condition) {
+		return findByPageNew(condition, null);
+	}
+
+	public PageDataResponse<T> findByPageNew(Condition condition, String collectionName) {
+		Assert.notNull(condition);
+
+		PageDataResponse<T> respData = new PageDataResponse<T>();
+		respData.setCurrentPage(Integer.valueOf(condition.getCurrentPage()));
+		respData.setPerPageCount(Integer.valueOf(condition.getPageSize()));
+
+		Query query = createQueryNew(condition, null);
+
+		int totalCount = 0;
+		if (StringUtils.isBlank(collectionName)) {
+			totalCount = (int) this.mongoTemplate.count(query, this.entityClass);
+		} else {
+			totalCount = (int) this.mongoTemplate.count(query, this.entityClass, collectionName);
+		}
+		respData.setTotalCount(totalCount);
+
+		List<T> dataList = new ArrayList<T>();
+		if (StringUtils.isBlank(collectionName)) {
+			dataList = this.mongoTemplate.find(query, this.entityClass);
+		} else {
+			dataList = this.mongoTemplate.find(query, this.entityClass, collectionName);
+		}
+		respData.setDataList(dataList);
+
+		return respData;
+	}
+
+	public Query createQueryNew(Condition condition, Criteria otherCriteria) {
+		if ((condition == null) && (otherCriteria == null)) {
+			return new Query();
+		}
+
+		List<Criteria> allCriterialList = new ArrayList<Criteria>();
+		if (otherCriteria != null) {
+			allCriterialList.add(otherCriteria);
+		}
+
+		if (condition == null) {
+			Criteria c = new Criteria();
+			c.andOperator((Criteria[]) allCriterialList.toArray(new Criteria[allCriterialList.size()]));
+			return new Query(c);
+		}
+
+		try {
+			if (CollectionUtils.isNotEmpty(condition.getQueryItems())) {
+				List<Criteria> conditionCriteriaList = createCriteriaByQueryItemList(condition.getQueryItems());
+				allCriterialList.addAll(conditionCriteriaList);
+			}
+
+			Criteria criteria = new Criteria();
+			if (allCriterialList.size() > 0) {
+				criteria.andOperator((Criteria[]) allCriterialList.toArray(new Criteria[allCriterialList.size()]));
+			}
+
+			List<Criteria> allOrCriterialList = new ArrayList<Criteria>();
+			if (CollectionUtils.isNotEmpty(condition.getQueryOrItems())) {
+				List<Criteria> conditionCriteriaList = createCriteriaByQueryItemList(condition.getQueryOrItems());
+				allOrCriterialList.addAll(conditionCriteriaList);
+			}
+			if (allOrCriterialList.size() > 0) {
+				criteria.orOperator((Criteria[]) allOrCriterialList.toArray(new Criteria[allOrCriterialList.size()]));
+			}
+
+			Map<String, Integer> fields = condition.getFields();
+			Query query = null;
+			if (fields == null) {
+				query = new BasicQuery(criteria.getCriteriaObject());
+			} else {
+				query = new BasicQuery(criteria.getCriteriaObject(), new BasicDBObject(fields));
+			}
+
+			Sort sort = createSort(condition);
+			if (sort != null) {
+				query.with(sort);
+			}
+
+			int currentPage = condition.getCurrentPage();
+			int pageSize = condition.getPageSize();
+			if ((pageSize > 0) && (currentPage > 0)) {
+				query.skip((currentPage - 1) * pageSize);
+				query.limit(pageSize);
+			}
+			return query;
+		} catch (Exception e) {
+			logger.error("", e);
+			throw e;
+		}
+	}
+
 }

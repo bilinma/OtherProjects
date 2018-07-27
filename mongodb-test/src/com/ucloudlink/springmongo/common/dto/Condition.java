@@ -14,6 +14,8 @@ public class Condition implements Serializable {
 	private static final long serialVersionUID = -5427500692306190991L;
 	private Collection<QueryItem> queryItems = new LinkedHashSet();
 
+	private Collection<QueryItem> queryOrItems = new LinkedHashSet();
+
 	@Deprecated
 	private String orderbyProperty;
 	@Deprecated
@@ -37,6 +39,10 @@ public class Condition implements Serializable {
 
 	public Collection<QueryItem> getQueryItems() {
 		return this.queryItems;
+	}
+	
+	public Collection<QueryItem> getQueryOrItems() {
+		return this.queryOrItems;
 	}
 
 	public int getCurrentPage() {
@@ -116,6 +122,16 @@ public class Condition implements Serializable {
 		return this;
 	}
 
+	public Condition addOrItem(QueryItem item) {
+		this.queryOrItems.add(item);
+		return this;
+	}
+
+	public Condition addOrItem(String param, Object value, Formula formula) {
+		this.queryOrItems.add(new QueryItem(param, value, formula));
+		return this;
+	}
+	
 	public Condition addAll(Collection<QueryItem> items) {
 		this.queryItems.addAll(items);
 		return this;
