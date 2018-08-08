@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.demo;
+package com.ucloudlink.redis;
 
 import java.util.Iterator;
 import java.util.List;
