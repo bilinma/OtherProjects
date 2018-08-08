@@ -31,8 +31,12 @@ public class TestSpringRedis {
 	@Test
 	public void testRedis() {
 		
-		redisTemplateUtil.set("name", "马小斌");
-		System.out.println(redisTemplateUtil.get("name"));
+		User user = new User();
+		user.setId(1L);
+		user.setName("马小斌");
+		redisTemplateUtil.set("user_"+1, user);
+		System.out.println(redisTemplateUtil.get("user_"+1));
+		
 		// stringRedisTemplate的操作
 		// String读写
 		redisTemplate.delete("myStr");
