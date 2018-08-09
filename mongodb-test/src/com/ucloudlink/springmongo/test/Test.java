@@ -26,7 +26,7 @@ public class Test {
 		condition.addOrItem("deliveryTime", Long.valueOf(currentTime - 1*3600*1000),Formula.LE);
 		condition.addOrItem("startTime", currentTime, Formula.GE);
 		condition.addItem("tmlStatus", "NORMAL", Formula.EQ);
-		condition.addItem("status", "WAIT_RETURN", Formula.EQ);
+		condition.addItem("status", "WAIT_RETURN", Formula.IN);
 		condition.addItem("createTime", createTime, Formula.GE);
 		condition.setOrderby("createTime", true);
 		condition.setCurrentPage(1);
