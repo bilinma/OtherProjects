@@ -1,4 +1,4 @@
-package com.ucloudlink.test;
+package com.bilin.test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.yaml.snakeyaml.Yaml;
 
-import com.ucloudlink.bo.Person;
+import com.bilin.bo.Person;
 
 public class TestYml {
 

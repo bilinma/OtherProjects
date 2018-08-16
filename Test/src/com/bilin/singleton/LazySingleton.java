@@ -1,4 +1,4 @@
-package com.ucloudlink.singleton;
+package com.bilin.singleton;
 
 /**
  * 延迟加载但存在线程安全问题

@@ -1,4 +1,4 @@
-package com.ucloudlink.test;
+package com.bilin.test;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

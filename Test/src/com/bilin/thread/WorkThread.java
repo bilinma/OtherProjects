@@ -1,4 +1,4 @@
-package com.ucloudlink.thread;
+package com.bilin.thread;
 
 public class WorkThread implements Runnable{
 	

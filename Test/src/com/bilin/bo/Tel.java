@@ -1,4 +1,4 @@
-package com.ucloudlink.bo;
+package com.bilin.bo;
 
 public class Tel {
 	private String name;

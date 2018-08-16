@@ -1,4 +1,4 @@
-package com.ucloudlink.singleton;
+package com.bilin.singleton;
 
 /**
  * 单例饿汉式

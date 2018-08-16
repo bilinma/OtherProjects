@@ -1,4 +1,4 @@
-package com.ucloudlink.test;
+package com.bilin.test;
 
 import java.util.HashMap;
 import java.util.Map;

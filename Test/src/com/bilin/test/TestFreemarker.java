@@ -1,4 +1,4 @@
-package com.ucloudlink.test;
+package com.bilin.test;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ucloudlink.bo.Student;
+import com.bilin.bo.Student;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

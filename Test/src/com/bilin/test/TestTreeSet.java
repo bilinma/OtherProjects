@@ -1,11 +1,11 @@
-package com.ucloudlink.test;
+package com.bilin.test;
 
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.ucloudlink.bo.Student;
+import com.bilin.bo.Student;
 
 public class TestTreeSet {
 

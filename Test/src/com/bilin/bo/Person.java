@@ -1,4 +1,4 @@
-package com.ucloudlink.bo;
+package com.bilin.bo;
 
 import java.util.List;
 
