@@ -25,12 +25,12 @@
 				<bean class="com.ucloudlink.redis.common.RedisCache">
 					<property name="redisTemplate" ref="redisTemplate" />
 					<property name="name" value="default" />
-					<property name="liveTime" value="${redis.liveTime}" />
+					<property name="liveTime" value="${redis.cache.liveTime}" />
 				</bean>
 				<bean class="com.ucloudlink.redis.common.RedisCache">
 					<property name="redisTemplate" ref="redisTemplate" />
 					<property name="name" value="common" />
-					<property name="liveTime" value="${redis.liveTime}" />
+					<property name="liveTime" value="${redis.cache.liveTime}" />
 					<!-- common名称要在类或方法的注解中使用 -->
 				</bean>
 			</set>

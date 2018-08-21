@@ -1,14 +1,27 @@
 package com.ucloudlink.redis;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 public class RedisJava {
     public static void main(String[] args) {
-        //连接本地的 Redis 服务
+    	//testRedis();
+    	
+    	testRedisCluster();
+    }
+    
+    
+    /**
+     * 单节点
+     */
+    public static void testRedis (){
+    	//连接本地的 Redis 服务
         Jedis jedis = new Jedis("localhost");
         System.out.println("连接成功");
         //查看服务是否运行
@@ -39,4 +52,19 @@ public class RedisJava {
             System.out.println(key);   
         }
     }
+    
+    public static void testRedisCluster (){
+    	String[] serverArray = new String[]{"10.1.75.29:7001","10.1.75.29:7002","10.1.75.29:7003"};
+		Set<HostAndPort> nodes = new HashSet<>();
+        
+        for (String ipPort : serverArray) {
+            String[] ipPortPair = ipPort.split(":");
+            nodes.add(new HostAndPort(ipPortPair[0].trim(), Integer.valueOf(ipPortPair[1].trim())));
+        }
+        JedisCluster JedisCluster = new JedisCluster(nodes, 1000,3);
+        JedisCluster.set("test", "testvalue");
+        System.out.println("redis 存储的字符串为: "+ JedisCluster.get("test"));
+    }
+    
+    
 }
