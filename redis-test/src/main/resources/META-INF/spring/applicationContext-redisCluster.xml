@@ -16,11 +16,18 @@
 	<description>Jedis Cluster Configuration</description>
 	<!-- 加载配置属性文件 按需加载 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:redis.properties" />
+	
+	<bean id="redisNodes" class="com.ucloudlink.redis.common.RedisNodesConfigFactory">
+		<property name="nodes" value="${redis.cluster.nodes}"/>
+	</bean>
+	
 	<!-- 配置Cluster -->
 	<bean id="redisClusterConfiguration" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
 		<property name="maxRedirects" value="${redis.cluster.maxRedirects}"></property>
 		<!-- 节点配置 -->
 		<property name="clusterNodes">
+			<bean ref="redisNodes"/>  
+			<!-- 替换为由自己写的工厂类加载Set配置
 			<set>
 				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
 					<constructor-arg name="host" value="10.1.75.29"></constructor-arg>
@@ -34,7 +41,19 @@
 					<constructor-arg name="host" value="10.1.75.29"></constructor-arg>
 					<constructor-arg name="port" value="7003"></constructor-arg>
 				</bean>
-			</set>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="10.1.75.29"></constructor-arg>
+					<constructor-arg name="port" value="7004"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="10.1.75.29"></constructor-arg>
+					<constructor-arg name="port" value="7005"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="10.1.75.29"></constructor-arg>
+					<constructor-arg name="port" value="7006"></constructor-arg>
+				</bean>				
+			</set> -->
 		</property>
 	</bean>
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
