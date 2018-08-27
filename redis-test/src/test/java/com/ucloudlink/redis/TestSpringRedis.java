@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ucloudlink.redis.bo.User;
 import com.ucloudlink.redis.service.IUserService;
+import com.ucloudlink.redis.topic.RedisTopicMessageListener;
 import com.ucloudlink.redis.utils.RedisTemplateUtil;
 
 /**
@@ -22,6 +24,8 @@ import com.ucloudlink.redis.utils.RedisTemplateUtil;
 @ContextConfiguration("classpath:META-INF/spring/applicationContext.xml")
 public class TestSpringRedis {
 
+	private static Logger logger = Logger.getLogger(TestSpringRedis.class);
+	
 	@Autowired
 	private RedisTemplate redisTemplate;
 	
@@ -77,6 +81,23 @@ public class TestSpringRedis {
 		}
 		System.out.println("---------------");
 	}
+	
+	@Test
+	public void testRedisTopic() {
+		int i=0;
+		while (true) {
+			try {
+				i++;
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			String msg = "我的消息"+i;
+			logger.debug(msg);
+			redisTemplateUtil.sendMessage("redis_topic", msg);
+		}
+	}
+	
 
 	@Autowired
 	private IUserService userService;

@@ -526,5 +526,39 @@ public class RedisTemplateUtil {
             e.printStackTrace();  
             return 0;  
         }  
-    }  
+    } 
+    
+    /**
+     * 向指定的列表左边插入数据
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public void leftPush(String key, String value) {
+        redisTemplate.opsForList().leftPush(key, value);
+    }
+    
+    /**
+     * 弹出指定列表右边的数据(如果没有数据,在指定的时间内等待)
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Object rightPop(String key, long timeout, TimeUnit unit) {
+        return redisTemplate.opsForList().rightPop(key, timeout, unit);
+    }
+    
+    /**
+     * redis发布消息
+     *
+     * @param channel
+     * @param message
+     */
+    public void sendMessage(String channel, String message) {
+        redisTemplate.convertAndSend(channel, message);
+    }
+    
 }
