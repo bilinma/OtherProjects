@@ -32,4 +32,10 @@ public class DateUtil {
 		//return sdf.parse(strDate);
 		return getDateFormat().parse(strDate);
 	}
+	
+	public static String getDateString() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddhhmmssSSS");
+		return format.format(new Date());
+	}
+	
 }
