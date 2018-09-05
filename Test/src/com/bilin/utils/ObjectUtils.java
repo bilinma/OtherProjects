@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by lonecloud on 17/3/12.
+ * 
  * 用于对Object进行解析并且转换成Map键值对的形式
- *
- * @author lonecloud
+ * @author xiaobin.ma
  * @version 1.0
  */
 public class ObjectUtils {
