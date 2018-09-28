@@ -83,6 +83,15 @@ public class TestSpringRedis {
 	}
 	
 	@Test
+	public void testRedisIncr() {
+		long a =  redisTemplateUtil.incr("userNum", 1);
+		System.out.println("---------------:"+a);
+		long b = (long) redisTemplateUtil.hincr("userNumHash", "day", 1);
+		System.out.println("---------------:"+b);
+	}
+	
+	
+	@Test
 	public void testRedisTopic() {
 		int i=0;
 		while (true) {

@@ -28,7 +28,7 @@ public class RedisTemplateUtil {
      */  
     public boolean expire(String key,long time){  
         try {  
-            if(time>0){  
+            if(time>0){
                 redisTemplate.expire(key, time, TimeUnit.SECONDS);  
             }  
             return true;  
@@ -270,7 +270,7 @@ public class RedisTemplateUtil {
      * @param by 要增加几(大于0) 
      * @return 
      */  
-    public double hincr(String key, String item,double by){    
+    public double hincr(String key, String item,double by){
         return redisTemplate.opsForHash().increment(key, item, by);  
     }  
 

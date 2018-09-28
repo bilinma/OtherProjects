@@ -61,9 +61,15 @@ public class RedisJava {
             String[] ipPortPair = ipPort.split(":");
             nodes.add(new HostAndPort(ipPortPair[0].trim(), Integer.valueOf(ipPortPair[1].trim())));
         }
-        JedisCluster JedisCluster = new JedisCluster(nodes, 1000,3);
-        JedisCluster.set("test", "testvalue");
-        System.out.println("redis 存储的字符串为: "+ JedisCluster.get("test"));
+        JedisCluster jedisCluster = new JedisCluster(nodes, 1000,3);
+        jedisCluster.set("test", "testvalue");
+        System.out.println("redis 存储的字符串为: "+ jedisCluster.get("test"));
+        
+        String count = jedisCluster.get("rediscount1");
+	    System.out.println("count1="+count);
+        jedisCluster.incr("rediscount1");
+	    String count1 = jedisCluster.get("rediscount1");
+	    System.out.println("count1="+count1);
     }
     
     
