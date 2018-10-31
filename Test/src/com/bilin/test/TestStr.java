@@ -64,17 +64,22 @@ public class TestStr {
 		}*/
 		
 		
-			int random=(int) Math.round(Math.random()*25+97);
-			char temp=(char) random;
-			System.out.println(temp);
+		int random=(int) Math.round(Math.random()*25+97);
+		char temp=(char) random;
+		System.out.println(temp);
 			
 			
-			char[] A_Z = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'
-					,'S','T','U','V','W','X','Y','Z'};
-					Random rd = new Random();
-					for(int i=0;i<=10;i++)//随即10个拿出来看看
-					{
-					System.out.print(A_Z[rd.nextInt(26)]+" ");
-					}
+		char[] A_Z = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'
+				,'S','T','U','V','W','X','Y','Z'};
+		Random rd = new Random();
+		//随即10个拿出来看看
+		for(int i=0;i<=10;i++){
+			System.out.println(A_Z[rd.nextInt(26)]+" ");
+		}
+		
+		
+		String URL = "https://s3-ap-southeast-1.amazonaws.com/ukl-devtest-bss-terminal-configure-001/mpms/ae39f3ea4581cc45a4310eea9c89cc8f.doc";
+		
+		System.out.println(URL.substring(URL.lastIndexOf("/")+1));
 	}
 }

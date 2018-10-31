@@ -13,7 +13,7 @@ public class TestDate {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-		Date date = new Date(1523601688059L);
+		Date date = new Date(1540812547787L);
 		System.out.println(date.getTime());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("北京时间：" + dateFormat.format(date));
@@ -27,9 +27,9 @@ public class TestDate {
 		double c = a + b;
 		System.out.println(df.format(c));
 
-		for (int i = 0; i < 3; i++) {
+		/*for (int i = 0; i < 3; i++) {
 			new TestSimpleDateFormatThreadSafe().start();
-		}
+		}*/
 
 	}
 

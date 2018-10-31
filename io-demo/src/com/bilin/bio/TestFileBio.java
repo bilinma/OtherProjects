@@ -32,7 +32,7 @@ public class TestFileBio {
 	
 	public static void bioReadFile(String resource) throws IOException{
 		
-		long startTime = System.currentTimeMillis();
+		/*long startTime = System.currentTimeMillis();
 		FileInputStream fis=  new FileInputStream(resource);
 		byte[] cbuf=new byte[1024];
 		StringBuffer sb = new StringBuffer();
@@ -43,23 +43,34 @@ public class TestFileBio {
 		}
 		System.out.println(sb);
 		long end = System.currentTimeMillis();
-		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));
+		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));*/
 		
 		
-		/* 编码
+		//编码
 		long startTime = System.currentTimeMillis();
 		FileInputStream fis=  new FileInputStream(resource);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis,"UTF-8"));
-		char[] cbuf=new char[1024];
 		StringBuffer sb = new StringBuffer();
+		
+		//按块读
+		/*char[] cbuf=new char[1024];
 		while(true){
 			int num =br.read(cbuf);
 			if(num==-1)break;
 			String temp=new String(cbuf,0,num);
 			sb.append(temp);
-		}
+		}*/
+		//按行读
+		String line = null; 
+        while ((line = br.readLine()) != null) {
+        	sb.append(line + "\n");
+        	System.out.println("*************:"+line);
+        }
 		System.out.println(sb);
 		long end = System.currentTimeMillis();
-		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));*/
+		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));
 	}
+	
+	
+	
 }
