@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.queue;
+package com.bilin.redis.queue;
 
 import redis.clients.jedis.Jedis;
 

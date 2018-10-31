@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.topic;
+package com.bilin.redis.topic;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;

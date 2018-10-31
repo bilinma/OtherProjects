@@ -1,4 +1,4 @@
-package com.ucloudlink.redis;
+package com.bilin.redis;
 
 import java.util.List;
 import java.util.Map;

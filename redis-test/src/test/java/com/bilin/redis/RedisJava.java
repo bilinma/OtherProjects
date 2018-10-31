@@ -1,4 +1,4 @@
-package com.ucloudlink.redis;
+package com.bilin.redis;
 
 import java.util.HashMap;
 import java.util.HashSet;
