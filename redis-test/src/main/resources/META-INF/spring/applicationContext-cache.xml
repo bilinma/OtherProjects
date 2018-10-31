@@ -22,12 +22,12 @@
 		<property name="caches">
 			<set>
 				<!-- 这里可以配置多个redis -->
-				<bean class="com.ucloudlink.redis.common.RedisCache">
+				<bean class="com.bilin.redis.common.RedisCache">
 					<property name="redisTemplate" ref="redisTemplate" />
 					<property name="name" value="default" />
 					<property name="liveTime" value="${redis.cache.liveTime}" />
 				</bean>
-				<bean class="com.ucloudlink.redis.common.RedisCache">
+				<bean class="com.bilin.redis.common.RedisCache">
 					<property name="redisTemplate" ref="redisTemplate" />
 					<property name="name" value="common" />
 					<property name="liveTime" value="${redis.cache.liveTime}" />

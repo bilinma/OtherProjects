@@ -1,9 +1,14 @@
 package com.ucloudlink.redis;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import com.alibaba.druid.support.json.JSONParser;
+import com.alibaba.druid.support.json.JSONUtils;
 
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
@@ -13,7 +18,13 @@ public class RedisJava {
     public static void main(String[] args) {
     	//testRedis();
     	
-    	testRedisCluster();
+    	Map root = new HashMap();
+		root.put("money", "100");
+		root.put("amount", "1000");
+		root.put("date", "2018-10-20");
+    	
+		System.out.println(JSONUtils.toJSONString(root));
+    	//testRedisCluster();
     }
     
     

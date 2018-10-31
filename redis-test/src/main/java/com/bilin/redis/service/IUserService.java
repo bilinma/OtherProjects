@@ -1,6 +1,6 @@
-package com.ucloudlink.redis.service;
+package com.bilin.redis.service;
 
-import com.ucloudlink.redis.bo.User;
+import com.bilin.redis.bo.User;
 
 public interface IUserService {
 

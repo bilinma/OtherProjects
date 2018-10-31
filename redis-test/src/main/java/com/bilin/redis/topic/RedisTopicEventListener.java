@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.topic;
+package com.bilin.redis.topic;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;

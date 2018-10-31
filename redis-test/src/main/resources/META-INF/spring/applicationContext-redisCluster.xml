@@ -17,7 +17,7 @@
 	<!-- 加载配置属性文件 按需加载 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:redis.properties" />
 	
-	<bean id="redisNodes" class="com.ucloudlink.redis.common.RedisNodesConfigFactory">
+	<bean id="redisNodes" class="com.bilin.redis.common.RedisNodesConfigFactory">
 		<property name="nodes" value="${redis.cluster.nodes}"/>
 	</bean>
 	

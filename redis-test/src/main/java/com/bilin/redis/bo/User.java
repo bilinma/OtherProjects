@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.bo;
+package com.bilin.redis.bo;
 
 import java.io.Serializable;
 

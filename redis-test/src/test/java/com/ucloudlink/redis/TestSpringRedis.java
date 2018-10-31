@@ -12,10 +12,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ucloudlink.redis.bo.User;
-import com.ucloudlink.redis.service.IUserService;
-import com.ucloudlink.redis.topic.RedisTopicMessageListener;
-import com.ucloudlink.redis.utils.RedisTemplateUtil;
+import com.bilin.redis.bo.User;
+import com.bilin.redis.service.IUserService;
+import com.bilin.redis.topic.RedisTopicMessageListener;
+import com.bilin.redis.utils.RedisTemplateUtil;
 
 /**
  * Unit test for simple App.

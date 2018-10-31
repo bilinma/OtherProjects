@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.dao;
+package com.bilin.redis.dao;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.special.InsertListMapper;

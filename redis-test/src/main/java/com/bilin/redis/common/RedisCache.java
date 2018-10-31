@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.common;
+package com.bilin.redis.common;
 
 import java.io.Serializable;
 import java.util.concurrent.Callable;

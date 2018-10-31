@@ -15,7 +15,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<context:property-placeholder location="classpath:jdbc.properties" />
-	<context:component-scan base-package="com.ucloudlink.demo" />
+	<context:component-scan base-package="com.bilin.demo" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
@@ -48,11 +48,11 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.ucloudlink.redis.dao" />
-		<property name="markerInterface" value="com.ucloudlink.redis.dao.BaseMapper" />
+		<property name="basePackage" value="com.bilin.redis.dao" />
+		<property name="markerInterface" value="com.bilin.redis.dao.BaseMapper" />
 		<property name="properties">
 			<value>
-				mappers=com.ucloudlink.redis.dao.BaseMapper
+				mappers=com.bilin.redis.dao.BaseMapper
 			</value>
 		</property>
 	</bean>

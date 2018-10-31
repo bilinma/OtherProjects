@@ -1,4 +1,4 @@
-package com.ucloudlink.redis.service.impl;
+package com.bilin.redis.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -7,9 +7,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ucloudlink.redis.bo.User;
-import com.ucloudlink.redis.dao.IUserMapper;
-import com.ucloudlink.redis.service.IUserService;
+import com.bilin.redis.bo.User;
+import com.bilin.redis.dao.IUserMapper;
+import com.bilin.redis.service.IUserService;
 
 @Service
 @Transactional
