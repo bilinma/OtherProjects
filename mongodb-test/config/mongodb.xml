@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     
 	<!--提供自动注入配置的扫描包-->
-    <context:component-scan base-package="com.ucloudlink.springmongo"/>
+    <context:component-scan base-package="com.bilin.springmongo"/>
 
     <context:property-placeholder location="classpath:mongodb.properties" file-encoding="utf-8"/>
 
