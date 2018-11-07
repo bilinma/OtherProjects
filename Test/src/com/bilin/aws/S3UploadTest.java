@@ -300,9 +300,9 @@ public class S3UploadTest {
 //			e.printStackTrace();
 //		}
 		//3.
-		File file = new File("C:/aaa.txt");
+		File file = new File("C:/Users/xiaobin.ma/Downloads/消防安全技术实务-13.pdf");
 		try {
-			uploadToS3(new FileInputStream(file),UUID.randomUUID()+".txt");
+			uploadToS3(new FileInputStream(file),UUID.randomUUID().toString().replace("-", "")+".pdf");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
