@@ -30,10 +30,10 @@ public class TestFreemarker {
 		}
 
 		Map root = new HashMap();
-		root.put("message", "您好！");
-		root.put("username", "diqiu");
-		root.put("strList", strList);
-		root.put("username1111", "23123");
+		root.put("money", "220");
+		//root.put("22ss", "232");
+		/*root.put("strList", strList);
+		root.put("username1111", "23123");*/
 		Template t = cfg.getTemplate("test.txt");
 
 		// 最关键在这里，不使用与文件相关的Writer
