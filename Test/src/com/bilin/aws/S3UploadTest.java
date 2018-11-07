@@ -35,10 +35,10 @@ import com.bilin.utils.DateUtil;
 public class S3UploadTest {
 	private static Logger logger = Logger.getLogger(S3UploadTest.class);
 	
-    public static String accessKeyID = "AKIAJ56CUMYNHH5A7EXA";
-    public static String secretKey = "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";
+    public static String accessKeyID = "";
+    public static String secretKey = "";
     //桶名称
-    public static String bucketName = "ukl-devtest-bss-terminal-configure-001";
+    public static String bucketName = "";
 	public static AmazonS3 s3;
 
 	static {

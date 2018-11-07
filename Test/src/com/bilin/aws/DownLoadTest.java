@@ -20,13 +20,13 @@ public class DownLoadTest {
 	
 	private static Logger logger = Logger.getLogger(DownLoadTest.class);
  
-    public static String accessKeyID = "AKIAJ56CUMYNHH5A7EXA";
+    public static String accessKeyID = "";
  
-    public static String secretKey = "upkSQa8a4UMdEr2Qf+Yte7sy9YkXuOszJCo0Kjgd";
+    public static String secretKey = "";
     //桶名称
-    public static String bucketName = "ukl-devtest-bss-terminal-configure-001";
+    public static String bucketName = "";
     //要下载文件在S3上的key
-    public static String key = "mpms/d18f7456dbd25629ada4c07781332b0a.jpg";
+    public static String key = "";
  
     public static void main(String[] args) {
  
