@@ -1,4 +1,4 @@
-!!com.ucloudlink.bo.Person
+!!com.bilin.bo.Person
 age: 23
 children:
 - {age: 8, children: null, name: mary1, sex: man}
