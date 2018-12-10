@@ -30,11 +30,11 @@ public class TestFreemarker {
 		}
 
 		Map root = new HashMap();
-		root.put("money", "220");
-		//root.put("22ss", "232");
-		/*root.put("strList", strList);
-		root.put("username1111", "23123");*/
-		Template t = cfg.getTemplate("test.txt");
+		root.put("username", "220");
+		root.put("message", "232");
+		root.put("strList", strList);
+		root.put("username1111", "23123");
+		Template t = cfg.getTemplate("config/test.txt");
 
 		// 最关键在这里，不使用与文件相关的Writer
 		StringWriter stringWriter = new StringWriter();
@@ -43,7 +43,7 @@ public class TestFreemarker {
 			t.process(root, stringWriter);
 
 			// 这里打印的就是通过模板处理后得到的字符串内容
-			System.out.println("stringWriter: " + stringWriter.toString());
+			System.out.println("stringWriter: \n" + stringWriter.toString());
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}
