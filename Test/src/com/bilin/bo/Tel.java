@@ -1,8 +1,14 @@
 package com.bilin.bo;
 
-public class Tel {
-	private String name;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+public class Tel {
+	
+	private String name;
+	
+	@NotBlank(message = "电话不能为空！")
 	private String tel;
 
 	public String getName() {
