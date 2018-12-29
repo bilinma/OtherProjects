@@ -2,12 +2,16 @@ package com.bilin.bo;
 
 import java.util.List;
 
+import com.bilin.validate.ValidPersonNumber;
+
+@ValidPersonNumber
 public class Person {
     private String name;
     private int age;
     private String Sex;
     private List<Person> children;
     
+    private int number;
     
 	public String getName() {
 		return name;
@@ -32,6 +36,12 @@ public class Person {
 	}
 	public void setChildren(List<Person> children) {
 		this.children = children;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
     
     

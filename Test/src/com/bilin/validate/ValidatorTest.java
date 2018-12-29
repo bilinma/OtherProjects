@@ -1,4 +1,4 @@
-package com.bilin.test;
+package com.bilin.validate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
