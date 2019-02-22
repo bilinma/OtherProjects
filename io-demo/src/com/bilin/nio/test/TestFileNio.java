@@ -19,63 +19,48 @@ import java.util.StringTokenizer;
 
 public class TestFileNio {
 
-	public static void nioCopyFile(String resource, String destination) throws IOException {
-		long startTime = System.currentTimeMillis();
-		FileInputStream fis = new FileInputStream(resource);
-		FileOutputStream fos = new FileOutputStream(destination);
-		FileChannel readChannel = fis.getChannel();
-		FileChannel writeChannel = fos.getChannel();
-		ByteBuffer buffer = ByteBuffer.allocate(1024);
-		while (true) {
-			if (readChannel.read(buffer) == -1) {
-				break;
-			}
-			//System.out.println("position=" + buffer.position() + " limit=" + buffer.limit() + " capacity=" + buffer.capacity());
-			buffer.flip();
-			//System.out.println("position=" + buffer.position() + " limit=" + buffer.limit() + " capacity=" + buffer.capacity());
-			writeChannel.write(buffer);
-			buffer.clear();
-		}
-		readChannel.close();
-		writeChannel.close();
-		long end = System.currentTimeMillis();
-		System.out.println("nioCopyFile耗费时间:" + (end - startTime));
-	}
-
-	public static void main(String[] args) throws IOException {
-		TestFileNio.nioCopyFile("C:/111.xlsx", "C:/222.xlsx");
-		// TestFileNio.wordSort("C:/aaa.txt");
-//		nioCopyTest1();
-//		nioCopyTest2();
-//		nioCopyTest3();
-	}
-
 	/**
-	 * 通道之间的数据传输(直接缓冲区的模式)
-	 *
+	 * 非直接缓冲区 文件的复制
+	 * 
+	 * @throws IOException
 	 */
-	private static void nioCopyTest3() throws IOException {
+	private static void nioCopyTest1(String resource, String destination) throws IOException {
 		long startTime = System.currentTimeMillis();
+		FileInputStream fileInputStream = new FileInputStream(resource);
+		FileOutputStream fileOutputStream = new FileOutputStream(destination);
 
-		FileChannel inChannel = FileChannel.open(Paths.get("E:\\ 1.avi"), StandardOpenOption.READ);
+		// 获取通道
+		FileChannel inChannel = fileInputStream.getChannel();
+		FileChannel outChanel = fileOutputStream.getChannel();
 
-		FileChannel outChennel = FileChannel.open(Paths.get("E:\\ 13.avi"), StandardOpenOption.WRITE,StandardOpenOption.READ, StandardOpenOption.CREATE_NEW);
+		// 分配缓冲区的大小
+		ByteBuffer buf = ByteBuffer.allocate(1024);
 
-		outChennel.transferFrom(inChannel, 0, inChannel.size());
-
+		// 将通道中的数据存入缓冲区
+		while (inChannel.read(buf) != -1) {
+			//System.out.println("position=" + buffer.position() + " limit=" + buffer.limit() + " capacity=" + buffer.capacity());
+			buf.flip();// 切换读取数据的模式
+			//System.out.println("position=" + buffer.position() + " limit=" + buffer.limit() + " capacity=" + buffer.capacity());
+			outChanel.write(buf);
+			buf.clear();
+		}
+		outChanel.close();
+		inChannel.close();
+		fileInputStream.close();
+		fileOutputStream.close();
 		long end = System.currentTimeMillis();
-		System.out.println("nioCopyTest3耗费时间:" + (end - startTime));
+		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));
 	}
-
+	
 	/**
 	 * 使用直接缓冲区完成文件的复制(内存映射文件)
 	 */
-	private static void nioCopyTest2() throws IOException {
+	private static void nioCopyTest2(String resource, String destination) throws IOException {
 		long startTime = System.currentTimeMillis();
 
-		FileChannel inChannel = FileChannel.open(Paths.get("E:\\ 1.avi"), StandardOpenOption.READ);
+		FileChannel inChannel = FileChannel.open(Paths.get(resource), StandardOpenOption.READ);
 
-		FileChannel outChennel = FileChannel.open(Paths.get("E:\\ 12.avi"), StandardOpenOption.WRITE,StandardOpenOption.READ, StandardOpenOption.CREATE_NEW);
+		FileChannel outChennel = FileChannel.open(Paths.get(destination), StandardOpenOption.WRITE,StandardOpenOption.READ, StandardOpenOption.CREATE_NEW);
 
 		// 内存映射文件(什么模式 从哪开始 到哪结束)
 		MappedByteBuffer inMappeBuf = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
@@ -92,37 +77,32 @@ public class TestFileNio {
 		System.out.println("nioCopyTest2耗费时间:" + (end - startTime));
 	}
 
+	
 	/**
-	 * 非直接缓冲区 文件的复制
-	 * 
-	 * @throws IOException
+	 * 通道之间的数据传输(直接缓冲区的模式)
+	 *
 	 */
-	private static void nioCopyTest1() throws IOException {
+	private static void nioCopyTest3(String resource, String destination) throws IOException {
 		long startTime = System.currentTimeMillis();
-		FileInputStream fileInputStream = new FileInputStream("E:\\ 1.avi");
-		FileOutputStream fileOutputStream = new FileOutputStream("E:\\ 11.avi");
 
-		// 获取通道
-		FileChannel inChannel = fileInputStream.getChannel();
-		FileChannel outChanel = fileOutputStream.getChannel();
+		FileChannel inChannel = FileChannel.open(Paths.get(resource), StandardOpenOption.READ);
 
-		// 分配缓冲区的大小
-		ByteBuffer buf = ByteBuffer.allocate(1024);
+		FileChannel outChennel = FileChannel.open(Paths.get(destination), StandardOpenOption.WRITE,StandardOpenOption.READ, StandardOpenOption.CREATE_NEW);
 
-		// 将通道中的数据存入缓冲区
-		while (inChannel.read(buf) != -1) {
-			buf.flip();// 切换读取数据的模式
-			outChanel.write(buf);
-			buf.clear();
-		}
-		outChanel.close();
-		inChannel.close();
-		fileInputStream.close();
-		fileOutputStream.close();
+		outChennel.transferFrom(inChannel, 0, inChannel.size());
+
 		long end = System.currentTimeMillis();
-		System.out.println("nioCopyTest1耗费时间:" + (end - startTime));
+		System.out.println("nioCopyTest3耗费时间:" + (end - startTime));
 	}
 
+	
+	public static void main(String[] args) throws IOException {
+		nioCopyTest1("C:/111.xlsx", "C:/n111.xlsx");
+		nioCopyTest2("C:/111.xlsx", "C:/n222.xlsx");
+		nioCopyTest3("C:/111.xlsx", "C:/n333.xlsx");
+		
+		// TestFileNio.wordSort("C:/aaa.txt");
+	}
 	
 	/**
 	 * 单词分析
