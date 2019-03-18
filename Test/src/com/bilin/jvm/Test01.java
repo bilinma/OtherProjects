@@ -1,4 +1,4 @@
-package com.bilin.test.jvm;
+package com.bilin.jvm;
 
 public class Test01 {
 
