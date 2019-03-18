@@ -1,4 +1,4 @@
-package com.bilin.singleton;
+package com.bilin.designMode.create.singleton;
 
 public class Test {
 

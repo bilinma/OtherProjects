@@ -1,4 +1,4 @@
-package com.bilin.singleton;
+package com.bilin.designMode.create.singleton;
 
 /**
  * 延迟加载但存在线程安全问题
