@@ -2,7 +2,6 @@ package com.bilin.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -17,7 +16,7 @@ public class FactoryPostProcessor implements BeanFactoryPostProcessor {
         String[] beanStr = configurableListableBeanFactory
                 .getBeanDefinitionNames();
         for (String beanName : beanStr) {
-            if ("beanFactoryPostProcessorTest".equals(beanName)) {
+            if ("springBean".equals(beanName)) {
                 BeanDefinition beanDefinition = configurableListableBeanFactory
                         .getBeanDefinition(beanName);
                 MutablePropertyValues m = beanDefinition.getPropertyValues();

@@ -10,7 +10,7 @@
     <!-- 注册一个BeanFactoryPostProcessor -->
     <bean id="factoryPostProcessor" class="com.bilin.spring.FactoryPostProcessor"/>
     <!-- 普通bean -->
-    <bean id="beanFactoryPostProcessorTest" class="com.bilin.spring.BeanFactoryPostProcessorTest" init-method="init" destroy-method="destory">
+    <bean id="springBean" class="com.bilin.spring.SpringBean" init-method="init" destroy-method="myDestory">
            <property name="name" value="张三"/>
            <property name="sex" value="男"/>
     </bean>
