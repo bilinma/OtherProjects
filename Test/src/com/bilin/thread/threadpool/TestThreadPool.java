@@ -1,4 +1,4 @@
-package com.bilin.thread;
+package com.bilin.thread.threadpool;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;

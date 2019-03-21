@@ -1,4 +1,4 @@
-package com.bilin.thread;
+package com.bilin.thread.threadpool;
 
 public class WorkThread implements Runnable{
 	
