@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
-    http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.xsd
+    http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd 
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     
 	<!--提供自动注入配置的扫描包-->
@@ -20,8 +20,7 @@
     2.db-factory：相当于sessionFactory
     3.mongoTemplate：与数据库接口交互的主要实现类
     -->
-
-    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.username}:${mongo.password}@${mongo.authenticationdb}">
+   <!--  <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.username}:${mongo.password}@${mongo.authenticationdb}">
     	<mongo:client-options 
     		write-concern="SAFE"
             connections-per-host="${mongo.connectionsPerHost}"
@@ -29,8 +28,11 @@
             connect-timeout="${mongo.connectTimeout}"
             max-wait-time="${mongo.maxWaitTime}"
             socket-timeout="${mongo.socketTimeout}"/>
-    </mongo:mongo-client>
-
+    </mongo:mongo-client> -->
+    
+    <mongo:mongo-client replica-set="${mongo.replicaset}"  id="mongoClient" credentials="${mongo.user}:${mongo.password}@${mongo.authenticationdb}" />
+	
+	
     <mongo:db-factory id="mongoDbFactory" dbname="${mongo.database}" mongo-ref="mongoClient"/>
 
 	<bean id="mappingContext"
