@@ -1,0 +1,52 @@
+﻿################### Spring配置  ###################
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    name: druid
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+      
+        
+################### Mybatis配置  ###################
+mybatis:
+  type-aliases-package: com.bilin.bo
+  mapper-locations: classpath:META-INF/maps/*.xml
+
+################### 通用Mapper配置  ###################
+mapper:
+  mappers: com.bilin.dao.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+################### Mybatis Pagehelper插件配置  ###################
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+  
+  #线程池相关配置
+threadPool: 
+  corePoolSize: 50
+  maxPoolSize: 200
+  queueCapacity: 100
+  keepAlive: 60
