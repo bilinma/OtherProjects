@@ -81,5 +81,15 @@ public class TestStr {
 		String URL = "https://s3-ap-southeast-1.amazonaws.com/ukl-devtest-bss-terminal-configure-001/mpms/ae39f3ea4581cc45a4310eea9c89cc8f.doc";
 		
 		System.out.println(URL.substring(URL.lastIndexOf("/")+1));
+		
+		
+		String IN_SYNC_INFO = "%s/v1.0/%s/partner/customer-mgr/verified-info";
+		
+		String cbcUrl = "111";
+    	String partnerId = "2222";
+    	
+        String syncInfoUrl =String.format(IN_SYNC_INFO, cbcUrl,partnerId);
+        
+        System.out.println(syncInfoUrl);
 	}
 }
