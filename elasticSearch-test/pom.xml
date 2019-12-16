@@ -6,7 +6,7 @@
 	<version>0.0.1</version>
 
 	<properties>
-		<spring.version>4.3.11.RELEASE</spring.version>
+		<spring.version>5.2.2.RELEASE</spring.version>
 		<findbugs.annotations>2.0.0</findbugs.annotations>
 		<checkstyle.maven.plugin>2.11</checkstyle.maven.plugin>
 		<pmd.maven.plugin>3.0</pmd.maven.plugin>
