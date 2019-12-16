@@ -13,7 +13,7 @@ public class TestDate {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-		Date date = new Date(1559122740000L);
+		Date date = new Date(1541561097526L);
 		System.out.println(date.getTime());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("北京时间：" + dateFormat.format(date));
